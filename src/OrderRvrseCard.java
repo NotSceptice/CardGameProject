@@ -14,6 +14,7 @@ public class OrderRvrseCard extends Card implements ReverseOrder{
     public void play(Player currentPlayer, ArrayList<Player> allPlayers) {
         currentPlayer.addPoints(super.getPointValue());
 
+
         System.out.println(currentPlayer.getName() + " played " + this);
         System.out.println(currentPlayer.getName() + " now has " + currentPlayer.getNumPoints() + " points.");
     }
@@ -23,10 +24,12 @@ public class OrderRvrseCard extends Card implements ReverseOrder{
         Collections.reverse(allPlayers);
 
         System.out.println("The player order has been reversed!");
+        System.out.println("New Order: ");
 
         for (Player player : allPlayers) {
-            System.out.println(player.getName());
+            System.out.println(player.getName() + " ");
         }
+        System.out.println();
     }
 
     @Override
