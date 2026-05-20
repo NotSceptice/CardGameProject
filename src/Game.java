@@ -15,7 +15,8 @@ public class Game {
     private int totalNumberOfCards;
     private float pointCardChances; // % chance (from 0-1) of generating a point card
     private float attackCardChances; // % chance (from 0-1) of generating an attack card
-    private float freezeCardChances; // % chance (from 0-1) of generating a freeze card
+    private float freezeCardChances;// % chance (from 0-1) of generating a freeze card
+    private float healthCardChances; //% chance to generate health card
     //private float thiefCardChances; // thief card chances are the leftovers of the other chances
 
     private float chancesOfDamageCardBeingInDamageDeck; // % chance of a generated damage card being added to the damage-only deck
@@ -154,6 +155,7 @@ public class Game {
     // Initializes the settings fields.
     private void setGameSettings() {
         // Player settings
+
         startingHandSize = 3;
         playerChancesOfPlayingCard = 0.5f; // 50% play card, 25% draw card from mixed, 25% draw card from damage deck and play immediately
         playerChancesOfDrawingFromMixedDeck = 0.25f;
@@ -168,8 +170,9 @@ public class Game {
         chancesOfDamageCardBeingInDamageDeck = 0.4f;
 
         pointCardChances = 0.5f; // must be between 0 and 1
-        attackCardChances = 0.25f; // must be between 0 and 1
-        freezeCardChances = 0.15f; // must be between 0 and 1
+        attackCardChances = 0.20f; // must be between 0 and 1
+        freezeCardChances = 0.10f; // must be between 0 and 1
+        healthCardChances = 0.10f;
 
         // thief card chances should be positive based on the math, but check just to be safe
         float thiefCardChances = 1f - (pointCardChances + attackCardChances + freezeCardChances);
@@ -209,6 +212,12 @@ public class Game {
                 } else {
                     mixedDeck.add(newFreezeCard);
                 }
+            }
+
+            //% chance of creating a health card
+            else if (randomValue < pointCardChances + attackCardChances + freezeCardChances + healthCardChances) {
+
+                mixedDeck.add(new HealthCard());
             }
 
             // % chance of creating a thief card

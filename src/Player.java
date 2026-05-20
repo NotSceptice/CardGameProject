@@ -88,6 +88,10 @@ public class Player {
         addPoints(-pointsToRemove);
     }
 
+    public void healPoints(int pointsToHeal) {
+        numPoints += pointsToHeal;
+    }
+
     public int getNumPoints() {
         return numPoints;
     }
