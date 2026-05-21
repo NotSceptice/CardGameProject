@@ -42,7 +42,7 @@ public class AttackCard extends Card implements DealsDamage {
             }
         }
 
-        doDamage(currentPlayer, otherPlayer);
+        
     }
 
     @Override
