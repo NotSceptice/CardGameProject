@@ -16,7 +16,8 @@ public class Game {
     private float pointCardChances; // % chance (from 0-1) of generating a point card
     private float attackCardChances; // % chance (from 0-1) of generating an attack card
     private float freezeCardChances;// % chance (from 0-1) of generating a freeze card
-    private float healthCardChances; //% chance to generate health card
+    private float healthCardChances;//% chance to generate health card
+    private float orderRvrseCardChances; // % chance to generate order reverse card
     //private float thiefCardChances; // thief card chances are the leftovers of the other chances
 
     private float chancesOfDamageCardBeingInDamageDeck; // % chance of a generated damage card being added to the damage-only deck
@@ -173,6 +174,7 @@ public class Game {
         attackCardChances = 0.20f; // must be between 0 and 1
         freezeCardChances = 0.10f; // must be between 0 and 1
         healthCardChances = 0.10f;
+        orderRvrseCardChances = 0.10f;
 
         // thief card chances should be positive based on the math, but check just to be safe
         float thiefCardChances = 1f - (pointCardChances + attackCardChances + freezeCardChances);
@@ -218,6 +220,13 @@ public class Game {
             else if (randomValue < pointCardChances + attackCardChances + freezeCardChances + healthCardChances) {
 
                 mixedDeck.add(new HealthCard());
+            }
+
+
+            //% chance of creating a health card
+            else if (randomValue < pointCardChances + attackCardChances + freezeCardChances + healthCardChances + orderRvrseCardChances) {
+
+                mixedDeck.add(new OrderRvrseCard());
             }
 
             // % chance of creating a thief card
